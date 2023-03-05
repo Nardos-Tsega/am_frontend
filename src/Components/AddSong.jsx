@@ -83,7 +83,15 @@ const AddSong = (props) => {
     window.location.reload();
   };
 
-  const updatedSong = { id: props.song._id, title, artist, album, genre };
+  if (props.song) {
+    var updatedSong = {
+      id: props.song._id || null,
+      title,
+      artist,
+      album,
+      genre,
+    };
+  }
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -93,6 +101,10 @@ const AddSong = (props) => {
     setAlbum("");
     setGenre("");
     window.location.reload();
+  };
+
+  const handleSubmit = (e) => {
+    props.song ? handleUpdate(e) : handleAdd(e);
   };
 
   return (
@@ -130,7 +142,7 @@ const AddSong = (props) => {
           placeholder="Genre"
         />
         <div>
-          <Button onClick={handleUpdate}>Add Song</Button>
+          <Button onClick={handleSubmit}>Add Song</Button>
           <SecondaryButton onClick={props.handleCancel}>Cancel</SecondaryButton>
         </div>
       </Modal>

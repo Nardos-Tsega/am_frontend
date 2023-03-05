@@ -2,7 +2,7 @@ import { call, put, takeEvery } from "redux-saga/effects";
 import { getGenresSuccess } from "./genresSlice";
 
 function* WorkGetGenresFetch() {
-  const genres = yield call(() => fetch("http://localhost:5000/genres"));
+  const genres = yield call(() => fetch("https://am-esrk.onrender.com/genres"));
   const formattedGenres = yield genres.json();
   yield put(getGenresSuccess(formattedGenres));
 }

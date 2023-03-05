@@ -2,7 +2,9 @@ import { call, put, takeEvery } from "redux-saga/effects";
 import { getArtistsSuccess } from "./artistsSlice";
 
 function* WorkGetArtistsFetch() {
-  const artists = yield call(() => fetch("http://localhost:5000/artists"));
+  const artists = yield call(() =>
+    fetch("https://am-esrk.onrender.com/artists")
+  );
   const formattedArtists = yield artists.json();
   yield put(getArtistsSuccess(formattedArtists));
 }

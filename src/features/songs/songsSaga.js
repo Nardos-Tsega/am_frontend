@@ -16,7 +16,7 @@ function* WorkGetSongsFetch() {
 
 function* workPostSong(action) {
   const response = yield call(() =>
-    fetch("http://localhost:5000/songs", {
+    fetch("https://am-esrk.onrender.com/songs", {
       method: "POST",
       body: JSON.stringify(action.payload),
       headers: {
@@ -44,7 +44,7 @@ function* workDeleteSong(action) {
 
 function* workUpdateSong(action) {
   const response = yield call(() =>
-    fetch(`http://localhost:5000/songs/${action.payload.id}`, {
+    fetch(`https://am-esrk.onrender.com/songs/${action.payload.id}`, {
       method: "PUT",
       body: JSON.stringify(action.payload),
       headers: {
