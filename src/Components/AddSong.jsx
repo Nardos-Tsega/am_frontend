@@ -142,7 +142,9 @@ const AddSong = (props) => {
           placeholder="Genre"
         />
         <div>
-          <Button onClick={handleSubmit}>Add Song</Button>
+          <Button onClick={handleSubmit}>
+            {props.song ? "Update Song" : "Add Song"}
+          </Button>
           <SecondaryButton onClick={props.handleCancel}>Cancel</SecondaryButton>
         </div>
       </Modal>

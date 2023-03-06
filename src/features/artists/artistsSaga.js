@@ -3,7 +3,7 @@ import { getArtistsSuccess } from "./artistsSlice";
 
 function* WorkGetArtistsFetch() {
   const artists = yield call(() =>
-    fetch("https://am-esrk.onrender.com/artists")
+    fetch("https://am-backend.vercel.app/artists")
   );
   const formattedArtists = yield artists.json();
   yield put(getArtistsSuccess(formattedArtists));

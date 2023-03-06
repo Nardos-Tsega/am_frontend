@@ -2,21 +2,20 @@ import { call, put, takeEvery, takeLatest, select } from "redux-saga/effects";
 import {
   deleteSongSuccess,
   updateSong,
-  updateSongSuccess,
   getSongsSuccess,
   postSong,
   postSongSuccess,
 } from "./songsSlice";
 
 function* WorkGetSongsFetch() {
-  const songs = yield call(() => fetch("https://am-esrk.onrender.com/songs"));
+  const songs = yield call(() => fetch("https://am-backend.vercel.app/songs"));
   const formattedSongs = yield songs.json();
   yield put(getSongsSuccess(formattedSongs));
 }
 
 function* workPostSong(action) {
   const response = yield call(() =>
-    fetch("https://am-esrk.onrender.com/songs", {
+    fetch("https://am-backend.vercel.app/songs", {
       method: "POST",
       body: JSON.stringify(action.payload),
       headers: {
@@ -25,6 +24,7 @@ function* workPostSong(action) {
     })
   );
 
+  console.log(response);
   const isPosting = yield select((state) => state.songs.isPosting);
   if (!isPosting) {
     yield put(postSong());
@@ -35,7 +35,7 @@ function* workPostSong(action) {
 
 function* workDeleteSong(action) {
   const response = yield call(() =>
-    fetch(`http://localhost:5000/songs/${action.payload}`, {
+    fetch(`https://am-backend.vercel.app/songs/${action.payload}`, {
       method: "DELETE",
     })
   );
@@ -44,7 +44,7 @@ function* workDeleteSong(action) {
 
 function* workUpdateSong(action) {
   const response = yield call(() =>
-    fetch(`https://am-esrk.onrender.com/songs/${action.payload.id}`, {
+    fetch(`https://am-backend.vercel.app/songs/${action.payload.id}`, {
       method: "PUT",
       body: JSON.stringify(action.payload),
       headers: {
