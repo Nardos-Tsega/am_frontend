@@ -9,7 +9,7 @@ import {
 } from "./songsSlice";
 
 function* WorkGetSongsFetch() {
-  const songs = yield call(() => fetch("http://localhost:5000/songs"));
+  const songs = yield call(() => fetch("https://am-esrk.onrender.com/songs"));
   const formattedSongs = yield songs.json();
   yield put(getSongsSuccess(formattedSongs));
 }
